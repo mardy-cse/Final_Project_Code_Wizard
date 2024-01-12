@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'ban.dart';
-import 'eng.dart';
-
-class Python_variable extends StatelessWidget {
-  const Python_variable({super.key});
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+class C_Output extends StatelessWidget {
+  const C_Output({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +9,7 @@ class Python_variable extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Variables'),
+          title: _appBar('Output'),
           centerTitle: true,
           bottom: const TabBar(
             tabs: [
@@ -22,11 +20,20 @@ class Python_variable extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            EngVersion(),
-            BanVersion(),
+            _eng(context),
+            _ban(context),
           ],
         ),
       ),
     );
   }
+}
+Widget _appBar(String text){
+  return Text(text);
+}
+Widget _ban(BuildContext context){
+  return SfPdfViewer.asset('assets/pdf/coutputban.pdf');
+}
+Widget _eng(BuildContext context){
+  return SfPdfViewer.asset('assets/pdf/Coutputeng.pdf');
 }

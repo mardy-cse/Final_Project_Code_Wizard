@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../python/python.dart';
-import 'c_intro.dart';
-import 'c_syntax.dart';
-import 'coutput.dart';
-class C_Prog extends StatelessWidget {
+import 'python.dart';
+class python_home extends StatelessWidget {
   var size, height, width;
   @override
   Widget build(BuildContext context) {
@@ -12,7 +9,7 @@ class C_Prog extends StatelessWidget {
     width = size.width;
     return Scaffold(
       appBar: AppBar(
-        title: _appBar('C Programming'),
+        title: Text('Python'),
       ),
       body: ListView(
         children: [
@@ -22,17 +19,17 @@ class C_Prog extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> C_Intro()));
+
                     },
                     child: _buildPricaution(context,'1.', 'Intro')),
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> C_Syntax()));
+
                     },
                     child: _buildPricaution(context,'2.', 'Syntax')),
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> C_Output()));
+
                     },
                     child: _buildPricaution(context,'3.', 'Output')),
                 InkWell(
@@ -130,25 +127,25 @@ Widget _buildPricaution(BuildContext context, String num, String text) {
     height: MediaQuery.of(context).size.height * .09,
     width: double.infinity,
     decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            width: 0.8,
-            color: Colors.grey,
-          ),
-          top: BorderSide(
-            width: 0.0,
-            color: Colors.grey,
-          ),
-          left: BorderSide(
-            width: 0.0,
-            color: Colors.grey,
-          ),
-          right: BorderSide(
-            width: 0.0,
-            color: Colors.grey,
-          ),
+      color: Colors.white,
+      border: Border(
+        bottom: BorderSide(
+          width: 0.8,
+          color: Colors.grey,
         ),
+        top: BorderSide(
+          width: 0.0,
+          color: Colors.grey,
+        ),
+        left: BorderSide(
+          width: 0.0,
+          color: Colors.grey,
+        ),
+        right: BorderSide(
+          width: 0.0,
+          color: Colors.grey,
+        ),
+      ),
     ),
     child: Row(
       children: [
@@ -157,8 +154,8 @@ Widget _buildPricaution(BuildContext context, String num, String text) {
           padding: EdgeInsets.only(right: 10),
           child: Center(
             child: Text(num, style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Poppins',
+              fontSize: 18,
+              fontFamily: 'Poppins',
             ),),
           ),
         ),
@@ -173,7 +170,4 @@ Widget _buildPricaution(BuildContext context, String num, String text) {
       ],
     ),
   );
-}
-Widget _appBar(String text){
-  return Text(text);
 }

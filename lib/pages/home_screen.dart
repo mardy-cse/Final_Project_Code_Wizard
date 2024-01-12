@@ -1,9 +1,8 @@
 import 'package:code_wizard_v1/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import '../auth/login_screen.dart';
 import 'c programming/c_prog.dart';
+import 'python/py.dart';
 
 class HomeScreen extends StatelessWidget {
   var size, height, width;
@@ -168,7 +167,7 @@ class HomeScreen extends StatelessWidget {
                       InkWell(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => C_Prog(),));
+                              builder: (context) => python_home(),));
                           },
                           child: _buildAllCourses(context,'assets/icons/icons8-python-96.png','Python')),
                       InkWell(
