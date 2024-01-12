@@ -10,35 +10,48 @@ class cplaylist extends StatefulWidget {
 
 class _cplaylistState extends State<cplaylist> {
   final videourl= 'https://www.youtube.com/watch?v=982nK2Vdk_o&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=1';
-  final videourlq= 'https://www.youtube.com/watch?v=37ihwOpP4PE&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=3';
-  final videourl4='https://www.youtube.com/watch?v=NWhvLbIHIqI&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=4';
+  final videourl2= 'https://www.youtube.com/watch?v=37ihwOpP4PE&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=3';
+  final videourl3= 'https://www.youtube.com/watch?v=NWhvLbIHIqI&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=4';
+  final videourl4= 'https://www.youtube.com/watch?v=76UTxRliHQE&list=PL_XxuZqN0xVASsjyqiNzgjUWHbDkN2Scy&index=5';
 
   late YoutubePlayerController _Cintro;
   late YoutubePlayerController _Csintax;
-  late YoutubePlayerController _ConVid4;
+  late YoutubePlayerController _C3;
+  late YoutubePlayerController _C4;
 
   @override
   void initState(){
-    final videoID= YoutubePlayer.convertUrlToId(videourl);
-    final videoIDq= YoutubePlayer.convertUrlToId(videourlq);
+    final videoID1= YoutubePlayer.convertUrlToId(videourl);
+    final videoID2= YoutubePlayer.convertUrlToId(videourl2);
+    final videoID3= YoutubePlayer.convertUrlToId(videourl3);
     final videoID4= YoutubePlayer.convertUrlToId(videourl4);
-    _Cintro = YoutubePlayerController(initialVideoId: videoID!,
+    _Cintro = YoutubePlayerController(initialVideoId: videoID1!,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
         )
     );
 
-    _Csintax = YoutubePlayerController(initialVideoId: videoIDq!,
+    _Csintax = YoutubePlayerController(initialVideoId: videoID2!,
+        flags: const YoutubePlayerFlags(
+          autoPlay: false,
+          mute: true,
+          isLive: false,
+        )
+    );
+
+    _C3 = YoutubePlayerController(initialVideoId: videoID3!,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
         )
     );
 
-    _ConVid4 = YoutubePlayerController(initialVideoId: videoID4!,
+    _C4 = YoutubePlayerController(initialVideoId: videoID4!,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
         )
     );
+
+
     super.initState();
   }
   @override
@@ -58,52 +71,48 @@ class _cplaylistState extends State<cplaylist> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10,),
-                    const Text('C Programming language Introduction' ,style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    const SizedBox(height: 10,),
-                    Card(
-                      child: YoutubePlayer(controller: _Cintro,
-                        showVideoProgressIndicator: true,
-                      ),
-                    ),
-          
-                    const SizedBox(height: 30,),
-                    const Text('C Programming Syntex' ,style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    const SizedBox(height: 10,),
-                    Card(
-                      child: YoutubePlayer(controller: _Csintax,
-                        showVideoProgressIndicator: true,
-                      ),
-                    ),
-                    const SizedBox(height: 30,),
-                    const Text('Basic Calculation in C' ,style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    const SizedBox(height: 10,),
-                    Card(
-                      child: YoutubePlayer(controller: _ConVid4,
-                        showVideoProgressIndicator: true,
-                      ),
-                    )
-                  ],
-                ),
-              )
-          
+              const SizedBox(height: 10,),
+              const Text('C Programming language Introduction' ,style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),),
+              YoutubePlayer(controller: _Cintro,
+                showVideoProgressIndicator: true,
+              ),
+
+              const SizedBox(height: 30,),
+              const Text('C Programming Syntex' ,style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),),
+              YoutubePlayer(controller: _Csintax,
+                showVideoProgressIndicator: true,
+              ),
+
+
+              const SizedBox(height: 30,),
+              const Text('Basic Calculation in C' ,style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),),
+              YoutubePlayer(controller: _C3,
+                showVideoProgressIndicator: true,
+              ),
+
+
+              const SizedBox(height: 30,),
+              const Text('Variables in C Programming' ,style: TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),),
+              YoutubePlayer(controller: _C4,
+                showVideoProgressIndicator: true,
+              ),
+
             ],
           ),
         )
