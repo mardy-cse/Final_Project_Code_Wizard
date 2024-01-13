@@ -157,7 +157,7 @@ class _UserProfileState extends State<UserProfile> {
               );
             }
             return const Center(
-              child: CircularProgressIndicator(),
+              child: const CircularProgressIndicator(),
             );
           },
         )
