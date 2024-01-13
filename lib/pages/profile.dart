@@ -130,13 +130,34 @@ class _UserProfileState extends State<UserProfile> {
                         //   ),
                         // ),
                         SizedBox(height: 10,),
-                        Text('Date of Birth'),
-                        DOBInputField(
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime.now(),
-                          showLabel: true,
-                          dateFormatType: DateFormatType.DDMMYYYY,
-                          autovalidateMode: AutovalidateMode.always,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25),
+                          child: Text('Date of Birth'),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 15,bottom: 15),
+                          margin: EdgeInsets.only(left: 20,right: 20,top: 5),
+                          height: 82,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(width: 1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: DOBInputField(
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime.now(),
+                                  showLabel: true,
+                                  dateFormatType: DateFormatType.DDMMYYYY,
+                                  autovalidateMode: AutovalidateMode.always,
+                                ),
+                              ),
+
+                            ],
+
+                          ),
                         ),
 
                       ],
