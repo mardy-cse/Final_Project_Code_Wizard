@@ -1,8 +1,5 @@
-import 'package:code_wizard_v1/pages/python/py_intro.dart';
-import 'package:code_wizard_v1/pages/python/py_syntax.dart';
 import 'package:flutter/material.dart';
-import 'python.dart';
-class python_home extends StatelessWidget {
+class html_home extends StatelessWidget {
   var size, height, width;
   @override
   Widget build(BuildContext context) {
@@ -11,7 +8,7 @@ class python_home extends StatelessWidget {
     width = size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Python'),
+        title: Text('HTML'),
       ),
       body: ListView(
         children: [
@@ -21,12 +18,12 @@ class python_home extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Py_Intro()));
+
                     },
                     child: _buildPricaution(context,'1.', 'Intro')),
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Py_Syntax()));
+
                     },
                     child: _buildPricaution(context,'2.', 'Syntax')),
                 InkWell(
@@ -41,8 +38,7 @@ class python_home extends StatelessWidget {
                     child: _buildPricaution(context,'4.', 'Comments')),
                 InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => Python_variable(),));
+
                     },
                     child: _buildPricaution(context,'5.', 'Variables')),
                 InkWell(
