@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:code_wizard_v1/materials/data.dart';
 import 'package:code_wizard_v1/text_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class _UserProfileState extends State<UserProfile> {
   var size, height, width;
   final currentUser = FirebaseAuth.instance.currentUser!;
   final userCollection = FirebaseFirestore.instance.collection('Users');
+
 
   Future<void> editField (String field) async{
     String newValue= "";
@@ -88,12 +90,12 @@ class _UserProfileState extends State<UserProfile> {
                       children: [
                         MyTextBox(
                             text: userData['username'],
-                            sectionName: "username",
+                            sectionName: "User Name",
                             onPressed: ()=> editField('username'),
                         ),
                         MyTextBox(
                           text: userData['lastname'],
-                          sectionName: "lastname",
+                          sectionName: "Last Name",
                           onPressed: ()=> editField('lastname'),
                         ),
                         // Text('First Name'),
@@ -140,9 +142,12 @@ class _UserProfileState extends State<UserProfile> {
                       ],
                     ),
                   ),
-                  // SizedBox(height: 50,),
-                  // ElevatedButton(onPressed: (){},
-                  //     child: Text('Update'))
+                  SizedBox(height: 50,),
+                  ElevatedButton(onPressed: (){
+
+                    Navigator.pop(context);
+                  },
+                      child: Text('Save'))
                 ],
 
               );
