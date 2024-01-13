@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:code_wizard_v1/pages/home_screen.dart';
-
 import '../bottom_navbar.dart';
 
 class register extends StatefulWidget {
@@ -11,12 +11,15 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-  var email ='', pass='';
+  //var email ='', pass='';
   final formKey = GlobalKey<FormState>();
   bool _obscureText = false;
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -49,7 +52,7 @@ class _registerState extends State<register> {
                   children: [
                     TextFormField(
                       onChanged: (value) {
-                        email = value;
+                        emailTextController.text = value;
                       },
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -71,7 +74,7 @@ class _registerState extends State<register> {
 
                     TextFormField(
                       onChanged: (value) {
-                        pass = value;
+                        passwordTextController.text = value;
                       },
 
                       decoration: InputDecoration(
@@ -117,10 +120,20 @@ class _registerState extends State<register> {
                           print('Unsuccessful');
                         }
                         try {
-                          UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                              email: email,
-                              password: pass,
+                          UserCredential userCredential =
+                          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: emailTextController.text,
+                              password: passwordTextController.text,
                           );
+                          FirebaseFirestore.instance
+                              .collection('Users')
+                              .doc(userCredential.user!.email)
+                              .set({
+                            'username': emailTextController.text.split("@")[0],
+                            'lastname' : 'Empty..'
+                            // Add other user data if needed
+                          });
+
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             print('The password provided is too weak.');

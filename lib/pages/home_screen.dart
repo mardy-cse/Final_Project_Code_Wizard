@@ -1,13 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_wizard_v1/pages/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '../auth/login_screen.dart';
 import 'c programming/c_prog.dart';
 import 'python/py.dart';
 
 class HomeScreen extends StatelessWidget {
   var size, height, width;
   final _auth = FirebaseAuth.instance;
+  final currentUser = FirebaseAuth.instance.currentUser!;
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +64,28 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Adam Smith', style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),),
-                                Text('adamsmith@gmail.com')
+                                StreamBuilder<DocumentSnapshot>(
+                                    stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),
+                                    builder: (context, snapshot){
+                                      if(snapshot.hasData){
+                                        final userData = snapshot.data!.data() as Map<String, dynamic>;
+                                        return Text(userData['username'], style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                        );
+                                      }
+                                      else if (snapshot.hasError){
+                                        return Center(
+                                          child: Text('Error${snapshot.error}'),
+                                        );
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                ),
+
+                                Text(currentUser.email!)
                               ],
                             ),
                           )
@@ -86,6 +107,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                   onTap: () async{
                     await _auth.signOut();
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>loginScreen()));
                   },
                   child: _buildDrawer(context,'assets/icons/logout.png','Log Out')),
             ],
