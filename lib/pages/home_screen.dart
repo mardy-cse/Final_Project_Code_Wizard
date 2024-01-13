@@ -3,6 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'c programming/c_prog.dart';
+import 'cpp/cpp_contents.dart';
+import 'dart/dart.dart';
+import 'flutter/flutter.dart';
+import 'html/html.dart';
+import 'kotlin/kotlin.dart';
 import 'python/py.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -128,13 +133,48 @@ class HomeScreen extends StatelessWidget {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            _buildPopularCourses(context, 'assets/icons/icons8-c-programming-96.png', 'C'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-c-96.png', 'C++'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-html-96.png', 'HTML'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-python-96.png', 'Python'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-kotlin-96.png', 'Kotlin'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-dart-96.png', 'Dart'),
-                            _buildPopularCourses(context, 'assets/icons/icons8-flutter-96.png', 'Flutter'),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => C_Prog(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-c-programming-96.png', 'C')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => cpp_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-c-96.png', 'C++')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => python_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-python-96.png', 'Python')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => kotlin_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-kotlin-96.png', 'Kotlin')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => html_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-html-96.png', 'HTML')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => dart_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-dart-96.png', 'Dart')),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => flutter_home(),));
+                                },
+                                child: _buildPopularCourses(context, 'assets/icons/icons8-flutter-96.png', 'Flutter')),
                           ],
                         ),
                       ),
