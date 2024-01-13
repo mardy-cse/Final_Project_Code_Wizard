@@ -113,37 +113,36 @@ class _registerState extends State<register> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.grey.shade600
                           ),
-                          onPressed: ()async{
-                        if (formKey.currentState!.validate()) {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar(),));
-                        }else{
-                          print('Unsuccessful');
-                        }
-                        try {
-                          UserCredential userCredential =
-                          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                              email: emailTextController.text,
-                              password: passwordTextController.text,
-                          );
-                          FirebaseFirestore.instance
-                              .collection('Users')
-                              .doc(userCredential.user!.email)
-                              .set({
-                            'username': emailTextController.text.split("@")[0],
-                            'lastname' : 'Empty..'
-                            // Add other user data if needed
-                          });
+                          onPressed: ()async {
+                            if (formKey.currentState != null && formKey.currentState!.validate()) {
+                              try {
+                                UserCredential userCredential =
+                                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                  email: emailTextController.text,
+                                  password: passwordTextController.text,
+                                );
 
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == 'weak-password') {
-                            print('The password provided is too weak.');
-                          } else if (e.code == 'email-already-in-use') {
-                            print('The account already exists for that email.');
-                          }
-                        } catch (e) {
-                          print(e);
-                        }
-                      },
+                                if (userCredential.user != null) {
+                                  await FirebaseFirestore.instance
+                                      .collection('Users')
+                                      .doc(userCredential.user!.email)
+                                      .set({
+                                    'username': emailTextController.text.split("@")[0],
+                                    'lastname': 'Empty..'
+                                    // Add other user data if needed
+                                  });
+
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar(),));
+                                }
+                              } on FirebaseAuthException catch (e) {
+                                // Handle FirebaseAuthException
+                              } catch (e) {
+                                // Handle other exceptions
+                              }
+                            } else {
+                              print('Unsuccessful');
+                            }
+                          },
                           child: Text('Sign Up', style: TextStyle(
                             color: Colors.white,
                             letterSpacing: 2,
